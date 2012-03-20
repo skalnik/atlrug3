@@ -10,8 +10,9 @@ group :assets do
 end
 gem 'jquery-rails'
 
+gem 'rspec-rails', groups: [:development, :test]
+
 group :test do
-  gem 'rspec-rails'
   gem 'cucumber-rails'
   gem 'database_cleaner'
 end
