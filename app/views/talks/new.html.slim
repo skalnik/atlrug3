@@ -1,8 +1,8 @@
-= form_for @talk do |f|
+= form_for @talk, :class => 'well' do |f|
   = f.label :title
   = f.text_field :title
 
-  %br
+  br
 
   = f.label :duration, "Duration (minutes)"
   = f.number_field :duration, :step => 1

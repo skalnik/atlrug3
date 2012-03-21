@@ -3,5 +3,5 @@ ATLRUG::Application.routes.draw do
 
   match '/auth/:provider/callback', :to => 'sessions#create'
 
-  root :to => "talks#new"
+  root :to => 'high_voltage/pages#show', :id => 'home'
 end
