@@ -5,6 +5,7 @@ gem 'pg'
 gem 'slim'
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'octokit'
 gem 'high_voltage'
 
 gem 'unicorn'
