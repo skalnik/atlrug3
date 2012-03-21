@@ -2,11 +2,15 @@ class User < ActiveRecord::Base
   validates :uid, :uniqueness => true
 
   def atlrug_organizer?
-    octokit.team_members(atlrug_team_id).detect { |member| member.id.to_i == uid.to_i }
+    if atlrug_team_id
+      octokit.team_members(atlrug_team_id).detect { |member| member.id.to_i == uid.to_i }
+    end
   end
 
   def atlrug_team_id
     octokit.org_teams('atlrug').detect { |org| org.name == "Owners" }.id
+  rescue Octokit::Forbidden
+    nil
   end
 
   def octokit

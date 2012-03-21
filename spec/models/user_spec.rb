@@ -50,6 +50,14 @@ describe User do
       user.stub(:octokit => octokit)
       user.atlrug_team_id.should == 1
     end
+
+    it "doesn't raise an exception if user doesn't have permission to ATLRUG org" do
+      user = build(:user)
+      octokit = stub and octokit.stub(:org_teams).and_raise(Octokit::Forbidden)
+      user.stub(:octokit => octokit)
+
+      expect { user.atlrug_team_id }.should_not raise_error
+    end
   end
 
   describe '#atlrug_organizer?' do
@@ -59,7 +67,7 @@ describe User do
       members = [stub(:id => uid + "1"), stub(:id => uid), stub(:id => uid + "10")]
       octokit = stub(:team_members => members)
       user.stub(:octokit => octokit)
-      user.stub(:atlrug_team_id)
+      user.stub(:atlrug_team_id => 1)
 
       user.atlrug_organizer?.should be_true
     end
