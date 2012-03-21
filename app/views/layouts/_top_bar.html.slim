@@ -11,3 +11,6 @@
           li= link_to "Meetup", "http://meetup.com/atlantaruby/"
           li= link_to "Sponsors", page_path("sponsors")
           li= link_to "@atlrug", "http://twitter.com/atlrug"
+        ul.nav.pull-right
+          li= link_to content_tag(:i,"", :class => 'icon-lock icon-white'),
+                      login_path
