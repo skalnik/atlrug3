@@ -47,4 +47,12 @@ describe SessionsController do
       response.should redirect_to root_url
     end
   end
+
+  describe '#destroy' do
+    it 'logs the existing user out' do
+      session[:user_id] = 1
+      delete :destroy
+      session[:user_id].should be_nil
+    end
+  end
 end

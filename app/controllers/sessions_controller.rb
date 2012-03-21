@@ -12,6 +12,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    self.current_user = nil
+    redirect_to root_url, :notice => 'Logged out!'
+  end
+
   protected
 
   def auth_hash
