@@ -1,0 +1,10 @@
+= form_for @talk do |f|
+  = f.label :title
+  = f.text_field :title
+
+  %br
+
+  = f.label :duration, "Duration (minutes)"
+  = f.number_field :duration, :step => 1
+
+  = f.submit "Submit Proposal"
