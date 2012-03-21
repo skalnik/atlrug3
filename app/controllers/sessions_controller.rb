@@ -4,9 +4,12 @@ class SessionsController < ApplicationController
       @user = User.create_from_hash(auth_hash)
     end
 
-    self.current_user = @user
-
-    redirect_to root_url, :notice => 'Logged in!'
+    if @user.atlrug_organizer?
+      self.current_user = @user
+      redirect_to root_url, :notice => 'Logged in!'
+    else
+      redirect_to root_url, :notice => "You're not an organizer!"
+    end
   end
 
   protected

@@ -12,9 +12,11 @@ describe SessionsController do
   let(:user)      { create(:user) }
 
   describe '#create' do
+    before { user.stub(:atlrug_organizer? => true) }
+
     it 'attempts to find a user by auth hash' do
       SessionsController.any_instance.stub(:auth_hash => auth_hash)
-      User.should_receive(:find_by_hash).with(auth_hash)
+      User.should_receive(:find_by_hash).with(auth_hash).and_return(user)
       post :create
     end
 
@@ -25,10 +27,18 @@ describe SessionsController do
       post :create
     end
 
-    it 'logs the user in' do
+    it "logs the user in if they're an organizer" do
+      user.stub(:atlrug_organizer? => true)
       User.stub(:find_by_hash => user)
       post :create
       session[:user_id].should == user.id
+    end
+
+    it "doesn't log the user in if they're not an organizer" do
+      user.stub(:atlrug_organizer? => false)
+      User.stub(:find_by_hash => user)
+      post :create
+      session[:user_id].should be_nil
     end
 
     it 'redirects to root' do
