@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   class << self
     def find_by_hash(auth_hash)
-      find_by_uid(auth_hash['uid'])
+      find_by_uid(auth_hash['uid'].to_s)
     end
 
     def create_from_hash(auth_hash)
