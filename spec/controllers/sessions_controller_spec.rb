@@ -3,7 +3,12 @@ require 'spec_helper'
 describe SessionsController do
   let(:uid)       { '12345' }
   let(:name)      { 'Mike Skalnik' }
-  let(:auth_hash) { { 'uid' => uid, 'info' => { 'name' => name } } }
+  let(:login)     { 'skalnik' }
+  let(:token)     { 'abcedf123456' }
+  let(:auth_hash) {
+                    { 'uid' => uid, 'info' => { 'name' => name, 'nickname' => login },
+                      'credentials' => { 'token' => token } }
+                  }
   let(:user)      { create(:user) }
 
   describe '#create' do
