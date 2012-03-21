@@ -1,10 +1,22 @@
-= form_for @talk, :class => 'well' do |f|
-  = f.label :title
-  = f.text_field :title
+h2 Interested in speaking?
 
-  br
+p Please fill out this form, and Mike will get back to you as soon as he can.
 
-  = f.label :duration, "Duration (minutes)"
-  = f.number_field :duration, :step => 1
 
-  = f.submit "Submit Proposal"
+= form_for @talk, :html => {:class => 'form-horizontal'} do |f|
+  fieldset
+    legend ATLRUG Talk Proposal
+
+    .control-group
+      = f.label :title, :class => 'control-label'
+      .controls
+        = f.text_field :title
+
+    .control-group
+      = f.label :duration, "Duration (minutes)", :class => 'control-label'
+      .controls
+        = f.number_field :duration, :step => 5
+        p Just an estimation. Typical talks run 15-30 minutes.
+
+    .form_actions
+      = f.submit "Submit Proposal", :class => "btn btn-primary"
