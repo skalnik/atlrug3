@@ -3,7 +3,12 @@ require 'spec_helper'
 describe User do
   let(:uid)       { '12345' }
   let(:name)      { 'Mike Skalnik' }
-  let(:auth_hash) { { 'uid' => uid, 'info' => { 'name' => name } } }
+  let(:login)     { 'skalnik' }
+  let(:token)     { 'abcedf123456' }
+  let(:auth_hash) {
+                    { 'uid' => uid, 'info' => { 'name' => name, 'nickname' => login },
+                      'credentials' => { 'token' => token } }
+                  }
 
   context "validations" do
     it "is invalid if it has a non-unique uid" do
@@ -24,7 +29,8 @@ describe User do
 
   describe ".create_from_hash" do
     it "creates a new user with parameters given" do
-      User.should_receive(:create).with(:name => name, :uid => uid)
+      User.should_receive(:create).with(:name => name, :uid => uid,
+                                        :github_login => login, :github_token => token)
       User.create_from_hash(auth_hash)
     end
   end

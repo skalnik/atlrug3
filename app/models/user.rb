@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
 
     def create_from_hash(auth_hash)
       User.create(:name => auth_hash['info']['name'],
-                  :uid  => auth_hash['uid'])
+                  :uid  => auth_hash['uid'],
+                  :github_login => auth_hash['info']['nickname'],
+                  :github_token => auth_hash['credentials']['token'])
     end
   end
 end
