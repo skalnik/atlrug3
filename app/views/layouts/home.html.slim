@@ -3,6 +3,10 @@ body
   == render 'layouts/top_bar'
   .container
     .hero-unit
+      - if flash[:notice]
+        .alert.alert-info
+          a.close{data-dismiss='alert'}&times;
+          = flash[:notice]
       = yield
 
     = javascript_include_tag "application"
