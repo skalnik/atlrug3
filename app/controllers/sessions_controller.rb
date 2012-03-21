@@ -3,6 +3,10 @@ class SessionsController < ApplicationController
     unless @user = User.find_by_hash(auth_hash)
       @user = User.create_from_hash(auth_hash)
     end
+
+    self.current_user = @user
+
+    redirect_to root_url, :notice => 'Logged in!'
   end
 
   protected
