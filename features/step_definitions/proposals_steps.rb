@@ -10,17 +10,21 @@ Then /^I should see the talk was submitted successfully$/ do
 end
 
 Given /^I'm logged in as an admin$/ do
-  pending
+  user = Factory.create(:user)
+  OmniAuth.config.add_mock(:github, { :uid  => user.uid })
+  visit "/auth/github/"
 end
 
 Given /^a talk has been submitted$/ do
-  pending
+  Factory.create(:talk)
 end
 
 When /^I go approve a talk$/ do
   pending
+  visit "/talks/approve"
+  click_link "approve"
 end
 
 Then /^I should see it scheduled for the next meetup$/ do
-  pending
+  page.body.should match /scheduled for next meetup/
 end
