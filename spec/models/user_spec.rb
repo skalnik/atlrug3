@@ -11,6 +11,8 @@ describe User do
       user2 = build(:user, :uid => uid)
       user2.should_not be_valid
     end
+
+    it "is invalid if the user is not part of the ATLRUG owners team"
   end
 
   describe ".find_by_hash" do
