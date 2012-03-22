@@ -1,5 +1,8 @@
 ATLRUG::Application.routes.draw do
-  resources :talks, :only => [:new, :create]
+  resources :talks, :only => [:new, :create] do
+    get :approve, :on => :collection
+    put :accept, :on => :member
+  end
 
   match '/auth/:provider/callback', :to => 'sessions#create'
   match "/pages/*id" => 'pages#show', :as => :page, :format => false
