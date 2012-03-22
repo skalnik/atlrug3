@@ -50,4 +50,17 @@ describe Talk do
       should_not be_valid
     end
   end
+
+  describe '.pending' do
+    it "returns only pending talks" do
+      approved = [create(:talk, :approved => true),
+                  create(:talk, :approved => true)]
+      2.times { create(:talk) }
+
+      Talk.pending.size.should == 2
+      approved.each do |talk|
+        Talk.pending.should_not include talk
+      end
+    end
+  end
 end

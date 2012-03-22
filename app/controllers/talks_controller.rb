@@ -12,4 +12,8 @@ class TalksController < ApplicationController
       render :new
     end
   end
+
+  def approve
+    @talks = Talk.pending
+  end
 end
