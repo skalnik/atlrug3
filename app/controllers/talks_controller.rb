@@ -8,6 +8,7 @@ class TalksController < ApplicationController
     if @talk.save
       redirect_to root_url, notice: "Your talk has been submitted for review!"
     else
+      flash[:alert] = "Your proposal couldn't be submitted!"
       render :new
     end
   end
