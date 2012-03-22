@@ -13,10 +13,28 @@ p Please fill out this form, and Mike will get back to you as soon as he can.
         = f.text_field :title
 
     .control-group
+      = f.label :description, :class => 'control-label'
+      .controls
+        = f.text_area :description, :rows => 4
+
+    .control-group
       = f.label :duration, "Duration (minutes)", :class => 'control-label'
       .controls
-        = f.number_field :duration, :step => 5
-        p Just an estimation. Typical talks run 15-30 minutes.
+        = f.number_field :duration, :step => 5, :min => 0
+        p.help-block Just Estimate. Typically talks run 15-30 minutes.
+
+    .control-group
+      = f.label :email, :class => 'control-label'
+      .controls
+        = f.text_field :email
+        p.help-block So we can contact you
+
+    .control-group
+      = f.label :twitter, "Twitter Username", :class => 'control-label'
+      .controls
+        .input-prepend
+          span.add-on @
+          = f.text_field :twitter, :class => 'input-medium'
 
     .form-actions
       = f.submit "Submit Proposal", :class => "btn btn-primary"

@@ -1,7 +1,10 @@
 When /^I submit a talk named "([^"]*)" with length of (\d+) minutes$/ do |title, duration|
   visit new_talk_url
-  fill_in :title, :with => title
-  fill_in :duration, :with => duration
+  fill_in "Title", :with => title
+  fill_in "Duration (minutes)", :with => duration
+  fill_in "Email", :with => 'mike@atlrug.com'
+  fill_in "Twitter Username", :with => 'skalnik'
+  fill_in "Description", :with => 'This talk will blow your mind!'
   click_button "Submit Proposal"
 end
 
