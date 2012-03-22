@@ -11,6 +11,7 @@ end
 
 Given /^I'm logged in as an admin$/ do
   user = Factory.create(:user)
+  User.any_instance.stub(:atlrug_organizer? => true) and user.stub(:atlrug_team_id => 1)
   OmniAuth.config.add_mock(:github, { :uid  => user.uid })
   visit "/auth/github/"
 end
