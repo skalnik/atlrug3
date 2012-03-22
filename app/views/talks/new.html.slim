@@ -2,38 +2,22 @@ h2 Interested in speaking?
 
 p Please fill out this form, and Mike will get back to you as soon as he can.
 
-= form_for @talk, :html => {:class => 'form-horizontal'} do |f|
+= simple_form_for @talk, :html => {:class => 'form-horizontal'} do |f|
   fieldset
     legend ATLRUG Talk Proposal
 
-    .control-group
-      = f.label :title, :class => 'control-label'
-      .controls
-        = f.text_field :title
+    = f.input :title
 
-    .control-group
-      = f.label :description, :class => 'control-label'
-      .controls
-        = f.text_area :description, :rows => 4
+    = f.input :description, :input_html => { :rows => 4 }
 
-    .control-group
-      = f.label :duration, "Duration (minutes)", :class => 'control-label'
-      .controls
-        = f.number_field :duration, :step => 5, :min => 0
-        p.help-block Just Estimate. Typically talks run 15-30 minutes.
+    = f.input :duration, :label => "Duration (minutes)",
+                         :hint  => "Just estimate. Most talks are 15-30 minutes.",
+                         :input_html => { :step => 5, :min => 0 }
 
-    .control-group
-      = f.label :email, :class => 'control-label'
-      .controls
-        = f.text_field :email
-        p.help-block So we can contact you
-
-    .control-group
-      = f.label :twitter, "Twitter Username", :class => 'control-label'
-      .controls
-        .input-prepend
-          span.add-on @
-          = f.text_field :twitter, :class => 'input-medium'
+    = f.input :email
+    = f.input :twitter, :wrapper => :prepend, :label => "Twitter Username" do
+      = content_tag :span, "@", :class => "add-on"
+      = f.input_field :twitter, :class => 'input-medium'
 
     .form-actions
-      = f.submit "Submit Proposal", :class => "btn btn-primary"
+      = f.button :submit, "Submit Proposal", :class => "btn-primary"
