@@ -10,5 +10,6 @@ FactoryGirl.define do
     duration    30
     email       "mike@atlrug.com"
     twitter     "@skalnik"
+    approved    false
   end
 end
