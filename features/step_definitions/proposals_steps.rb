@@ -13,14 +13,14 @@ Then /^I should see the talk was submitted successfully$/ do
 end
 
 Given /^I'm logged in as an admin$/ do
-  user = Factory.create(:user)
+  user = FactoryGirl.create(:user)
   User.any_instance.stub(:atlrug_organizer? => true) and user.stub(:atlrug_team_id => 1)
   OmniAuth.config.add_mock(:github, { :uid  => user.uid })
   visit "/auth/github/"
 end
 
 Given /^a talk has been submitted$/ do
-  Factory.create(:talk)
+  FactoryGirl.create(:talk)
 end
 
 When /^I go approve a talk$/ do
