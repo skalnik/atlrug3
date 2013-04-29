@@ -14,7 +14,7 @@ describe User do
     it "is invalid if it has a non-unique uid" do
       user1 = create(:user, :uid => uid)
       user2 = build(:user, :uid => uid)
-      user2.should_not be_valid
+      user2.should be_invalid
     end
   end
 
@@ -56,7 +56,7 @@ describe User do
       octokit = stub and octokit.stub(:org_teams).and_raise(Octokit::Forbidden)
       user.stub(:octokit => octokit)
 
-      expect { user.atlrug_team_id }.should_not raise_error
+      expect { user.atlrug_team_id }.to_not raise_error
     end
   end
 
