@@ -17,6 +17,10 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => 'Logged out!'
   end
 
+  def failure
+    render :text => params.inspect
+  end
+
   protected
 
   def auth_hash

@@ -16,4 +16,7 @@ class TalksController < ApplicationController
   def approve
     @talks = Talk.pending.map { |talk| TalkDecorator.new(talk) }
   end
+
+  def accept
+  end
 end
