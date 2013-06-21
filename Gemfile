@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'pg'
-gem 'slim', '~> 1.3.8'
+gem 'slim'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'octokit'
